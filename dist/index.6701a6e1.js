@@ -25477,7 +25477,7 @@ $RefreshReg$(_c, "RegistrationView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"6TuXu","./registration-view.scss":"fr9ZP","@parcel/transformer-js/src/esmodule-helpers.js":"jZjrC","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"51JUg","react/jsx-runtime":"8xIwr","prop-types":"1tgq3"}],"fr9ZP":[function() {},{}],"6EiBJ":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","prop-types":"1tgq3","./registration-view.scss":"fr9ZP","@parcel/transformer-js/src/esmodule-helpers.js":"jZjrC","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"51JUg"}],"fr9ZP":[function() {},{}],"6EiBJ":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$4249 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -25629,7 +25629,7 @@ class MovieView extends _reactDefault.default.Component {
                                 lineNumber: 32
                             },
                             __self: this,
-                            children: movie.Description
+                            children: movie.MovieDescription
                         })
                     ]
                 }),
@@ -25657,7 +25657,7 @@ class MovieView extends _reactDefault.default.Component {
                                 lineNumber: 36
                             },
                             __self: this,
-                            children: movie.Genre
+                            children: movie.Genre.Name
                         })
                     ]
                 }),
@@ -25685,7 +25685,7 @@ class MovieView extends _reactDefault.default.Component {
                                 lineNumber: 40
                             },
                             __self: this,
-                            children: movie.Director
+                            children: movie.Director.Name
                         })
                     ]
                 }),
