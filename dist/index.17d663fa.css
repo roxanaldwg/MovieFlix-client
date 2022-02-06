@@ -16,11 +16,16 @@
   background-color: #006666;
   color: #ffffff;
 }
-* {
-  box-sizing: border-box;
-  font-family: Verdana, "Lucida Sans Unicode", sans-serif;
-  background-color: #006666;
-  color: #ffffff;
+
+button {
+  position: center;
+  border: none;
+  width: 100px;
+  background: #990099;
+  color: #FFFFFF;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+  cursor: pointer;
 }
 * {
   box-sizing: border-box;
@@ -28,7 +33,27 @@
   background-color: #006666;
   color: #ffffff;
 }
-.movie-flix {
-  color: steelblue;
+* {
+  box-sizing: border-box;
+  font-family: Verdana, "Lucida Sans Unicode", sans-serif;
+  background-color: #006666;
+  color: #ffffff;
+}
+
+button {
+  position: center;
+  border: none;
+  width: 100px;
+  background: #990099;
+  color: #FFFFFF;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+  cursor: pointer;
+}
+* {
+  box-sizing: border-box;
+  font-family: Verdana, "Lucida Sans Unicode", sans-serif;
+  background-color: #006666;
+  color: #ffffff;
 }
 /*# sourceMappingURL=index.17d663fa.css.map */

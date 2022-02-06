@@ -1,5 +1,7 @@
 import React from 'react';
+import axios from 'axios';
 import PropTypes from 'prop-types';
+import { Card, Button } from 'react-bootstrap';
 import './movie-card-view.scss';
 
 export class MovieCard extends React.Component {
@@ -7,7 +9,14 @@ export class MovieCard extends React.Component {
     const { movie, onMovieClick } = this.props;
 
     return (
-      <div onClick={() => onMovieClick(movie)} className="movie-card">{movie.Title}</div>
+
+      <Card>
+        <Card.Img variant="top" src={movie.ImagePath} />
+        <Card.Body>
+          <Card.Title>{movie.Title}</Card.Title>
+          <Button onClick={() => onMovieClick(movie)} variant="info">more info</Button>
+        </Card.Body>
+      </Card>
     );
   }
 }
