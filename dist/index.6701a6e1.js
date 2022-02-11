@@ -37530,7 +37530,7 @@ class MovieCard extends _reactDefault.default.Component {
 MovieCard.propTypes = {
     movie: _propTypesDefault.default.shape({
         Title: _propTypesDefault.default.string.isRequired,
-        Description: _propTypesDefault.default.string.isRequired,
+        MovieDescription: _propTypesDefault.default.string.isRequired,
         ImagePath: _propTypesDefault.default.string.isRequired,
         Genre: _propTypesDefault.default.string.isRequired,
         Director: _propTypesDefault.default.string.isRequired
@@ -37628,8 +37628,7 @@ class MovieView extends _reactDefault.default.Component {
                                 __self: this,
                                 children: [
                                     /*#__PURE__*/ _jsxRuntime.jsx("span", {
-                                        className: "label",
-                                        class: "font-weight-bold font-italic",
+                                        className: "label font-weight-bold font-italic",
                                         __source: {
                                             fileName: "src/components/movie-view/movie-view.jsx",
                                             lineNumber: 31
@@ -37657,8 +37656,7 @@ class MovieView extends _reactDefault.default.Component {
                                 __self: this,
                                 children: [
                                     /*#__PURE__*/ _jsxRuntime.jsx("span", {
-                                        className: "label",
-                                        class: "font-weight-bold font-italic",
+                                        className: "label font-weight-bold font-italic",
                                         __source: {
                                             fileName: "src/components/movie-view/movie-view.jsx",
                                             lineNumber: 35
@@ -37686,8 +37684,7 @@ class MovieView extends _reactDefault.default.Component {
                                 __self: this,
                                 children: [
                                     /*#__PURE__*/ _jsxRuntime.jsx("span", {
-                                        className: "label",
-                                        class: "font-weight-bold font-italic",
+                                        className: "label font-weight-bold font-italic",
                                         __source: {
                                             fileName: "src/components/movie-view/movie-view.jsx",
                                             lineNumber: 39
@@ -37715,8 +37712,7 @@ class MovieView extends _reactDefault.default.Component {
                                 __self: this,
                                 children: [
                                     /*#__PURE__*/ _jsxRuntime.jsx("span", {
-                                        className: "label",
-                                        class: "font-weight-bold font-italic",
+                                        className: "label font-weight-bold font-italic",
                                         __source: {
                                             fileName: "src/components/movie-view/movie-view.jsx",
                                             lineNumber: 43
