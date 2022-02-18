@@ -78,7 +78,7 @@ export function RegistrationView(props) {
                 <Card.Title>Please register</Card.Title>
                 <Form>
                   <Form.Group>
-                    <Form.label>Username:</Form.label>
+                    <Form.Label>Username:</Form.Label>
                     <Form.Control
                       type="text"
                       value={username}
@@ -91,7 +91,7 @@ export function RegistrationView(props) {
                   </Form.Group>
 
                   <Form.Group>
-                    <Form.label>Password:</Form.label>
+                    <Form.Label>Password:</Form.Label>
                     <Form.Control
                       type="password"
                       value={password}
@@ -104,7 +104,7 @@ export function RegistrationView(props) {
                   </Form.Group>
 
                   <Form.Group>
-                    <Form.label>Email:</Form.label>
+                    <Form.Label>Email:</Form.Label>
                     <Form.Control
                       type="email"
                       value={email}
