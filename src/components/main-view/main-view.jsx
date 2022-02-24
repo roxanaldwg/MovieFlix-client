@@ -1,26 +1,26 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Redirect, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Redirect, Link } from "react-router-dom";
 import axios from 'axios';
 import './main-view.scss';
 import { Row, Col, Container } from 'react-bootstrap';
+import { connect } from 'react-redux';
+
+import { setMovies } from '../../actions/actions';
+import MoviesList from '../movies-list/movies-list';
 
 import { LoginView } from '../login-view/login-view';
 import { RegistrationView } from '../registration-view/registration-view';
-import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { ProfileView } from '../profile-view/profile-view';
 import { GenreView } from '../genre-view/genre-view';
 import { DirectorView } from '../director-view/director-view';
 import { NavbarView } from '../navbar-view/navbar-view';
 
-export class MainView extends React.Component {
+class MainView extends React.Component {
 
   constructor() {
     super();
-
     this.state = {
-      movies: [],
-      selectedMovie: null,
       user: null
     };
   }
@@ -31,9 +31,7 @@ export class MainView extends React.Component {
     })
       .then(response => {
         // Assign the result to the state
-        this.setState({
-          movies: response.data
-        });
+        this.props.setMovies(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -49,6 +47,39 @@ export class MainView extends React.Component {
       this.getMovies(accessToken);
     }
   }
+
+  addToFavourites(movie) {
+    let favourites = this.state.userData.FavouriteMovies;
+
+    if (favourites.indexOf(movie) < 0) {
+      favourites.push(movie);
+    }
+
+    this.setState(prevState => ({
+      ...prevState,
+      userData: {
+        ...prevState.userData,
+        FavouriteMovies: favourites
+      }
+    })
+    );
+  }
+
+  getUserData(token) {
+    console.log('get user data');
+    axios.get('https://movieflix-rxnldwg.herokuapp.com/users/' + localStorage.getItem('user'), {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(response => {
+        console.log('user', response.data);
+        // Assign the result to the state
+        this.setState({ userData: response.data });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
 
   /* When a user successfully logs in, this function updates the `user` property in state to that *particular user*/
   onLoggedIn(authData) {
@@ -70,29 +101,43 @@ export class MainView extends React.Component {
     });
   }
 
+  /*When a movie is clicked, 
+  sthis function is invoked and 
+  updates the state of the `selectedMovie` *property to that movie*/
+
+  setSelectedMovie(movie) {
+    this.setState({
+      selectedMovie: movie
+    });
+  }
+
   render() {
-    const { movies, user } = this.state;
+
+    let { movies } = this.props;
+    const { user, userData } = this.state;
+    console.log('user: ', user);
 
     return (
       <Router>
-        <NavbarView user={user} />
+
+        <NavbarView onLoggedOut={() => this.onLoggedOut()} />
+        {/* ----------------  LOGGED IN AS <user>  */}
+        <Row>
+          {user && <Link to={`/users/${user}`} >logged in as {user}</Link>}
+        </Row>
+
         <Container>
           <Row className="main-view justify-content-md-center">
             <Route exact path="/" render={() => {
-              if (!user) {
-                return <Redirect to="/login" />;
-              }
 
-              return (
-                <>
-                  {movies.map(movie => (
-                    <Col md={3} key={movie._id}>
-                      <MovieCard movie={movie} onMovieClick={() => { }} />
-                    </Col>
-                  ))}
-                </>
-              );
+              if (!user) return <Col>
+                <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+              </Col>
+              if (movies.length === 0) return <div className="main-view" />;
+
+              return <MoviesList movies={movies} />;
             }} />
+
             <Route path="/login" render={() => {
               if (user) {
                 return <Redirect to="/" />;
@@ -111,6 +156,14 @@ export class MainView extends React.Component {
                 </Col>
               );
             }} />
+
+            <Route exact path={`/users/:username`} render={({ history }) => {
+              if (!user) return
+              <Redirect to="/" />
+
+              return <ProfileView userData={userData} user={user} onBackClick={() => history.goBack()} onLoggedOut={() => this.onLoggedOut()} movies={movies} />
+            }} />
+
             <Route path="/movies/:movieId" render={({ match, history }) => {
               if (!user) {
                 return (
@@ -197,3 +250,9 @@ export class MainView extends React.Component {
     );
   }
 }
+
+let mapStateToProps = state => {
+  return { movies: state.movies }
+}
+
+export default connect(mapStateToProps, { setMovies })(MainView);

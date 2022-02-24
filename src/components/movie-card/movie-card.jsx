@@ -8,7 +8,31 @@ import { Link } from "react-router-dom";
 
 export class MovieCard extends React.Component {
   render() {
-    const { movie } = this.props;
+    let { movie, addToFavourites } = this.props;
+    const currentUser = localStorage.getItem('user');
+    const token = localStorage.getItem('token');
+    console.log(token, 'token');
+
+
+    const handleAddToFavourites = (e) => {
+      e.preventDefault();
+      console.log('add to Favourite movies');
+      axios.post('https://movieflix-rxnldwg.herokuapp.com/users/${currentUser}/movies/${movie._id}', {},
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        /* then call props.onRegistration(username) */
+        .then(response => {
+          const data = response.data;
+          console.log(data);
+          alert("movie added to favourites");
+          addToFavourites(movie._id);
+        })
+        .catch(e => {
+          console.log('error adding movie to favourites');
+          alert('movie NOT added to favourites');
+        });
+    };
 
     return (
       <Card>
@@ -19,6 +43,19 @@ export class MovieCard extends React.Component {
           <Link to={`/movies/${movie._id}`}>
             <Button variant="link">Open</Button>
           </Link>
+          <Link to={`/directors/${movie.Director.Name}`}>
+            <Button variant="link">Director</Button>
+          </Link>
+          <Link to={`/genres/${movie.Genre.Name}`}>
+            <Button variant="link">Genre</Button>
+          </Link>
+          <Button
+            className="button"
+            variant="dark"
+            type="submit"
+            onClick={handleAddToFavourites}>
+            Add to favourites
+          </Button>
         </Card.Body>
       </Card>
     );
@@ -27,11 +64,18 @@ export class MovieCard extends React.Component {
 
 MovieCard.propTypes = {
   movie: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
     Title: PropTypes.string.isRequired,
-    MovieDescription: PropTypes.string.isRequired,
+    Description: PropTypes.string.isRequired,
+    Director: PropTypes.shape({
+      Name: PropTypes.string.isRequired,
+      Bio: PropTypes.string.isRequired,
+      BirthDate: PropTypes.string.isRequired
+    }),
+    Genre: PropTypes.shape({
+      Name: PropTypes.string.isRequired,
+      Description: PropTypes.string.isRequired
+    }),
     ImagePath: PropTypes.string.isRequired,
-    Genre: PropTypes.string.isRequired,
-    Director: PropTypes.string.isRequired
-  }).isRequired,
-  onMovieClick: PropTypes.func.isRequired
+  }).isRequired
 };

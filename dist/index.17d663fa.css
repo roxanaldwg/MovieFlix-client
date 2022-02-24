@@ -16,6 +16,12 @@
   background-color: #006666;
   color: #ffffff;
 }
+* {
+  box-sizing: border-box;
+  font-family: Verdana, "Lucida Sans Unicode", sans-serif;
+  background-color: #006666;
+  color: #ffffff;
+}
 
 button {
   position: center;
@@ -26,12 +32,6 @@ button {
   font-size: 1.2rem;
   line-height: 1.8rem;
   cursor: pointer;
-}
-* {
-  box-sizing: border-box;
-  font-family: Verdana, "Lucida Sans Unicode", sans-serif;
-  background-color: #006666;
-  color: #ffffff;
 }
 * {
   box-sizing: border-box;
