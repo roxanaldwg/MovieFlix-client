@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Form, Button, Card, CardGroup, Container, Col, Row } from 'react-bootstrap';
 import './registration-view.scss';
-import { Link } from 'react-router-dom';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 import axios from 'axios';
 
 export function RegistrationView(props) {
@@ -49,7 +49,7 @@ export function RegistrationView(props) {
     const isReq = validate();
     if (isReq) {
       /* Send request to the server for authentication */
-      axios.post('https://movieflix-rxnldwg.herokuapp.com/login', {
+      axios.post('https://movieflix-rxnldwg.herokuapp.com/users', {
         Username: username,
         Password: password,
         Email: email,

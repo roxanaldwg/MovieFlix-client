@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import './genre-view.scss';
 import { Link } from 'react-router-dom';
@@ -8,7 +7,9 @@ import { Container, Card, Button, Row } from 'react-bootstrap';
 export class GenreView extends React.Component {
 
   render() {
-    const { genre, onBackClick, movies } = this.props;
+    console.log('genre-view');
+
+    const { genre, onBackClick } = this.props;
 
     return (
       <Container fluid>
