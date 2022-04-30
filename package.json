@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "entry": "src/index.html",
+  "main": "src/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,6 +19,7 @@
   "homepage": "https://github.com/roxanaldwg/MovieFlix-client#readme",
   "dependencies": {
     "axios": "^0.25.0",
+    "parcel": "^2.0.0-rc.0",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-bootstrap": "^2.1.2",
