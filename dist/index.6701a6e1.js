@@ -41784,7 +41784,7 @@ class MovieCard extends _reactDefault.default.Component {
         const handleAddToFavourites = (e)=>{
             e.preventDefault();
             console.log('add to Favourite movies');
-            _axiosDefault.default.post('https://movieflix-rxnldwg.herokuapp.com/users/${currentUser}/movies/${movie._id}', {
+            _axiosDefault.default.post('https://movieflix-rxnldwg.app.com/users/${currentUser}/movies/${movie._id}', {
             }, {
                 headers: {
                     Authorization: `Bearer ${token}`
